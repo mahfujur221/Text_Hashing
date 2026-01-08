@@ -3,9 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Text Hashing Tool | All Hashes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+        <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-fingerprint"></i>
+                <h1>Text Hashing Tool</h1>
+            </div>
+            <p class="tagline">Generate multiple hash values from your text with a single click. Supports MD5, SHA-1, SHA-256, SHA-512 and more.</p>
+        </header>
+
+        <div class="app-container">
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-keyboard"></i>
+                    <h2>Input Text</h2>
+                </div>
+                
+                <div class="input-group">
+                    <label for="inputText">Enter text to hash:</label>
+                    <textarea id="inputText" placeholder="Type or paste your text here..."></textarea>
+                </div>
+                
+                <div class="input-group">
+                    <label>Select Hash Algorithms:</label>
+                    <div class="options">
+                        <div class="option-item">
+                            <input type="checkbox" id="md5" checked>
+                            <label for="md5">MD5</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="checkbox" id="sha1" checked>
+                            <label for="sha1">SHA-1</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="checkbox" id="sha256" checked>
+                            <label for="sha256">SHA-256</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="checkbox" id="sha512" checked>
+                            <label for="sha512">SHA-512</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="checkbox" id="sha3">
+                            <label for="sha3">SHA-3</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="checkbox" id="ripemd160">
+                            <label for="ripemd160">RIPEMD-160</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="buttons">
+                    <button class="btn-primary" id="generateBtn">
+                        <i class="fas fa-bolt"></i>
+                        Generate Hashes
+                    </button>
+                    <button class="btn-secondary" id="clearBtn">
+                        <i class="fas fa-broom"></i>
+                        Clear
+                    </button>
+                    <button class="btn-secondary" id="sampleBtn">
+                        <i class="fas fa-vial"></i>
+                        Sample Text
+                    </button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <h2>Hash Results</h2>
+                </div>
+                
+                <div class="tabs">
+                    <div class="tab active" data-tab="results">Results</div>
+                    <div class="tab" data-tab="history">History</div>
+                </div>
+                
+                <div class="tab-content active" id="results-tab">
+                    <div id="hashResults" class="hash-results">
+                        <div class="empty-state">
+                            <i class="fas fa-code"></i>
+                            <h3>No Hashes Generated Yet</h3>
+                            <p>Enter some text and click "Generate Hashes" to see the results here.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="history-tab">
+                    <div class="history-section">
+                        <div id="historyList">
+                            <div class="empty-state">
+                                <i class="fas fa-history"></i>
+                                <h3>No History Yet</h3>
+                                <p>Your previously generated hashes will appear here.</p>
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <button class="btn-danger" id="clearHistoryBtn">
+                                <i class="fas fa-trash"></i>
+                                Clear History
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Text Hashing Tool &copy; 2025 | All hash algorithms implemented using CryptoJS library</p>
+        </footer>
+    </div>
+
+    <div class="notification" id="notification">Copied to clipboard!</div>
+
+    <script src="./script.js"></script>
     
 </body>
 </html>
