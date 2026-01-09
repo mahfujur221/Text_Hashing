@@ -225,3 +225,35 @@ document.addEventListener('DOMContentLoaded', function() {
             historyList.appendChild(historyElement);
         });
         
+                // Add event listeners to use history buttons
+        document.querySelectorAll('.use-history-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const index = parseInt(this.getAttribute('data-index'));
+                inputText.value = history[index].text;
+                
+                // Switch to input tab
+                tabs[0].click();
+                
+                showNotification('Text loaded from history');
+            });
+        });
+    }
+    
+    // Clear history function
+    function clearHistory() {
+        history = [];
+        localStorage.setItem('hashHistory', JSON.stringify(history));
+        renderHistory();
+        showNotification('History cleared');
+    }
+    
+    // Copy to clipboard function
+    function copyToClipboard(text) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+    }
+    
