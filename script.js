@@ -198,3 +198,30 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
+               historyList.innerHTML = '';
+        
+        history.forEach((item, index) => {
+            const historyElement = document.createElement('div');
+            historyElement.className = 'history-item';
+            
+            const date = new Date(item.timestamp);
+            const formattedDate = `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+            
+            historyElement.innerHTML = `
+                <div class="history-text" title="${item.text}">
+                    ${item.text}
+                </div>
+                <div class="history-details">
+                    <div>${item.algorithmCount} algorithms</div>
+                    <div>${formattedDate}</div>
+                </div>
+                <div class="history-actions">
+                    <button class="btn-secondary use-history-btn" data-index="${index}">
+                        <i class="fas fa-redo"></i> Use
+                    </button>
+                </div>
+            `;
+            
+            historyList.appendChild(historyElement);
+        });
+        
