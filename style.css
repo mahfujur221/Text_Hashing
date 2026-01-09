@@ -46,3 +46,24 @@ header {
     gap: 15px;
     margin-bottom: 15px;
 }
+
+.logo i {
+    font-size: 2.5rem;
+    color: var(--success);
+}
+
+h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(to right, var(--success), var(--primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 10px;
+}
+
+.tagline {
+    color: var(--gray);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
