@@ -165,4 +165,36 @@ document.addEventListener('DOMContentLoaded', function() {
         const randomText = sampleTexts[Math.floor(Math.random() * sampleTexts.length)];
         inputText.value = randomText;
     }
+       
+    // Add to history function
+    function addToHistory(text, algorithmCount) {
+        const historyItem = {
+            text: text,
+            algorithmCount: algorithmCount,
+            timestamp: new Date().toISOString()
+        };
+        
+        history.unshift(historyItem);
+        
+        // Keep only last 10 items
+        if (history.length > 10) {
+            history = history.slice(0, 10);
+        }
+        
+        localStorage.setItem('hashHistory', JSON.stringify(history));
+        renderHistory();
+    }
     
+    // Render history function
+    function renderHistory() {
+        if (history.length === 0) {
+            historyList.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-history"></i>
+                    <h3>No History Yet</h3>
+                    <p>Your previously generated hashes will appear here.</p>
+                </div>
+            `;
+            return;
+        }
+        
