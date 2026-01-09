@@ -204,3 +204,22 @@ button {
 .btn-danger:hover {
     background: #e01a6f;
 }
+
+.hash-results {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.hash-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    border-left: 4px solid var(--primary);
+    transition: var(--transition);
+}
+
+.hash-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
