@@ -51,3 +51,92 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+        
+    // Generate hashes function
+    function generateHashes() {
+        const text = inputText.value.trim();
+        
+        if (!text) {
+            showNotification('Please enter some text to hash', 'error');
+            return;
+        }
+        
+        // Check if at least one algorithm is selected
+        const selectedAlgorithms = hashAlgorithms.filter(algo => {
+            const checkbox = document.getElementById(algo.id);
+            return checkbox.checked;
+        });
+        
+        if (selectedAlgorithms.length === 0) {
+            showNotification('Please select at least one hash algorithm', 'error');
+            return;
+        }
+        
+        // Clear previous results
+        hashResults.innerHTML = '';
+        
+        // Generate hashes for selected algorithms
+        selectedAlgorithms.forEach(algo => {
+            let hashValue;
+            
+            switch(algo.id) {
+                case 'md5':
+                    hashValue = CryptoJS.MD5(text).toString();
+                    break;
+                case 'sha1':
+                    hashValue = CryptoJS.SHA1(text).toString();
+                    break;
+                case 'sha256':
+                    hashValue = CryptoJS.SHA256(text).toString();
+                    break;
+                case 'sha512':
+                    hashValue = CryptoJS.SHA512(text).toString();
+                    break;
+                case 'sha3':
+                    hashValue = CryptoJS.SHA3(text).toString();
+                    break;
+                case 'ripemd160':
+                    hashValue = CryptoJS.RIPEMD160(text).toString();
+                    break;
+                default:
+                    hashValue = 'Algorithm not supported';
+            }
+            
+            // Create hash result element
+            const hashItem = document.createElement('div');
+            hashItem.className = 'hash-item';
+            hashItem.style.borderLeftColor = algo.color;
+            
+            hashItem.innerHTML = `
+                <div class="hash-title">
+                    <span>${algo.name}</span>
+                    <button class="copy-btn" data-hash="${hashValue}">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                </div>
+                <div class="hash-value">${hashValue}</div>
+                <div class="hash-info">
+                    <span>Length: ${hashValue.length} chars</span>
+                    <span>${new Date().toLocaleTimeString()}</span>
+                </div>
+            `;
+            
+            hashResults.appendChild(hashItem);
+        });
+        
+        // Add to history
+        addToHistory(text, selectedAlgorithms.length);
+        
+        // Show success notification
+        showNotification(`Generated ${selectedAlgorithms.length} hash values`);
+        
+        // Add event listeners to copy buttons
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const hashValue = this.getAttribute('data-hash');
+                copyToClipboard(hashValue);
+                showNotification('Hash copied to clipboard!');
+            });
+        });
+    }
+    
