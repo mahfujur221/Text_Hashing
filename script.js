@@ -257,3 +257,20 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.removeChild(textarea);
     }
     
+        // Show notification function
+    function showNotification(message, type = 'success') {
+        notification.textContent = message;
+        
+        if (type === 'error') {
+            notification.style.background = 'var(--danger)';
+        } else {
+            notification.style.background = 'var(--success)';
+        }
+        
+        notification.classList.add('show');
+        
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 3000);
+    }
+});
