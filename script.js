@@ -30,3 +30,24 @@ document.addEventListener('DOMContentLoaded', function() {
     clearBtn.addEventListener('click', clearInput);
     sampleBtn.addEventListener('click', loadSampleText);
     clearHistoryBtn.addEventListener('click', clearHistory);
+
+        
+    // Tab functionality
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const tabId = tab.getAttribute('data-tab');
+            
+            // Update active tab
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            
+            // Show active tab content
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+                if (content.id === `${tabId}-tab`) {
+                    content.classList.add('active');
+                }
+            });
+        });
+    });
+    
