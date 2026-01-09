@@ -139,4 +139,30 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+        
+    // Clear input function
+    function clearInput() {
+        inputText.value = '';
+        hashResults.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-code"></i>
+                <h3>No Hashes Generated Yet</h3>
+                <p>Enter some text and click "Generate Hashes" to see the results here.</p>
+            </div>
+        `;
+    }
+    
+    // Load sample text function
+    function loadSampleText() {
+        const sampleTexts = [
+            "The quick brown fox jumps over the lazy dog",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "Hello, World! This is a sample text for hashing.",
+            "Password123!@#",
+            "Cryptographic hash functions are fundamental to modern cryptography."
+        ];
+        
+        const randomText = sampleTexts[Math.floor(Math.random() * sampleTexts.length)];
+        inputText.value = randomText;
+    }
     
