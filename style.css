@@ -321,3 +321,24 @@ footer {
     align-items: center;
     transition: var(--transition);
 }
+
+.history-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.history-text {
+    max-width: 70%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.history-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.history-actions button {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+}
